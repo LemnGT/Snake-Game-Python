@@ -35,7 +35,7 @@ def draw_snake(size, pixels):
 def draw_score(score):
     font=pygame.font.SysFont("comicsans", 25)
     text=font.render(f"Score : {score}", True, score_color)
-    screen.blit(text,[400,10])
+    screen.blit(text,[550,10])
     
 def select_speed(key):
     if key ==pygame.K_DOWN:
@@ -78,9 +78,20 @@ def run_game():
                 
         draw_food(square_size,food_x,food_y)
         
+        
+        
         #update snake position
         x+=speed_x
         y+=speed_y
+        if x<0:
+            x=width-square_size
+        elif x==width:
+            x=0
+            
+        if y<0:
+            y=height-square_size
+        elif y==height:
+            y=0
         
         #draw snake
         pixels.append([x,y])
