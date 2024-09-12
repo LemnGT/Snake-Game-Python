@@ -5,7 +5,7 @@ import random
 pygame.init()
 pygame.display.set_caption("Snake Game on Python")
 
-width, height = 900, 600
+width, height = 1200, 800
 screen=pygame.display.set_mode((width,height))
 
 clock=pygame.time.Clock()
@@ -18,18 +18,12 @@ score_color=(255,0,255)
 
 #snake paramns
 square_size=20
-snake_speed=10
+snake_speed=15
 
-# draw objects
-##score
-##snake
-
-
-##food
 def generate_food():
-    x=round(random.randrange(0,900-square_size)/square_size)*square_size
-    y=round(random.randrange(0,600-square_size)/square_size)*square_size
-    return x, y
+    food_x=round(random.randrange(0,900-square_size)/square_size)*square_size
+    food_y=round(random.randrange(0,600-square_size)/square_size)*square_size
+    return food_x, food_y
 
 def draw_food(size,x,y):
     pygame.draw.rect(screen, food_color, [x,y,size,size])
@@ -73,8 +67,6 @@ def run_game():
     
     food_x, food_y = generate_food()
     
-
-    
     while not game_over:
         screen.fill(background_color)
         
@@ -109,7 +101,7 @@ def run_game():
         pygame.display.update()
         
         #create new food
-        if x == food_x and y==food_y:
+        if x == food_x and y == food_y:
             snake_size+=1
             food_x,food_y=generate_food()
             
